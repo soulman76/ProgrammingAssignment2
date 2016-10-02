@@ -13,27 +13,26 @@
 
 # Funktion makeCacheMatrix anlegen
 makeCacheMatrix <- function(x = matrix()) {
- # inverse Matrix auf NULL setzen
- invM <- NULL
- 
- # Funktion 1: Festlegen der Matrix
- setM <- function(y){
-  x <<- y
-  invM <<- NULL
- }
- 
- # Funktion 2: Abholen der Matrix
- getM <- function() x
- 
- # Funktion 3: Festlegen der inversen Matrix
- setIM <- function(invers)  invM <<- invers
- 
- # Funktion 4: Abholen der inversen Matrix
- getIM <- function() invM
- 
- # Liste mit den 4 Funktionen anlegen
- list(setM=setM, getM=getM, setIM=setIM, getIM=getIM)
- 
+        # inverse Matrix auf NULL setzen
+        invM <- NULL
+        
+        # Funktion 1: Festlegen der Matrix
+        setM <- function(y){
+                x <<- y
+                invM <<- NULL
+        }
+        
+        # Funktion 2: Abholen der Matrix
+        getM <- function() x
+        
+        # Funktion 3: Festlegen der inversen Matrix
+        setIM <- function(invers)  invM <<- invers
+        
+        # Funktion 4: Abholen der inversen Matrix
+        getIM <- function() invM
+        
+        # Liste mit den 4 Funktionen anlegen
+        list(setM=setM, getM=getM, setIM=setIM, getIM=getIM)
 }
 
 
@@ -43,19 +42,19 @@ makeCacheMatrix <- function(x = matrix()) {
 
 # Funktion cacheSolve anlegen
 cacheSolve <- function(x, ...) {
- 
- # Überprüft, ob die Matrix schon einmal invertiert wurde. Falls ja werden die Daten aus dem Cache verwendet.
- invM <- x$getIM()
- if (!is.null(invM)) {
-  message("verwende Daten aus dem Cache")
-  return(invM)
- }
- 
- # Falls die Matrix noch nicht invertiert wurde wird hier die Invertierung berechnet und anschliessend
- # gecached.
- DatenMatrix <- x$getM()
- invM <- solve(DatenMatrix, ...)
- x$setIM(invM)
- invM
+        
+        # Überprüft, ob die Matrix schon einmal invertiert wurde. Falls ja werden die Daten aus dem 
+        # Cache verwendet.
+        invM <- x$getIM()
+        if (!is.null(invM)) {
+                message("verwende Daten aus dem Cache")
+                return(invM)
+        }
+        
+        # Falls die Matrix noch nicht invertiert wurde wird hier die Invertierung berechnet und anschliessend
+        # gecached.
+        DatenMatrix <- x$getM()
+        invM <- solve(DatenMatrix, ...)
+        x$setIM(invM)
+        invM
 }
-
